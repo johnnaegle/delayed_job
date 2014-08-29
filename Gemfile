@@ -21,7 +21,7 @@ group :test do
 
   if ENV['RAILS_VERSION'] == '4.2.0.beta1'
     # see https://github.com/rails/rails-deprecated_sanitizer/pull/1
-    gem 'rails-deprecated_sanitizer', github: 'rails/rails-deprecated_sanitizer'
+    gem 'rails-deprecated_sanitizer', :github => 'rails/rails-deprecated_sanitizer'
   end
 
 end
