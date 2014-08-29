@@ -18,6 +18,12 @@ group :test do
   gem 'rspec', '>= 3'
   gem 'rubocop', '>= 0.25'
   gem 'simplecov', '>= 0.9'
+
+  if ENV['RAILS_VERSION'] == '4.2.0.beta1'
+    # see https://github.com/rails/rails-deprecated_sanitizer/pull/1
+    gem 'rails-deprecated_sanitizer', github: 'rails/rails-deprecated_sanitizer'
+  end
+
 end
 
 gemspec
