@@ -19,7 +19,8 @@ group :test do
   gem 'rubocop', '>= 0.25'
   gem 'simplecov', '>= 0.9'
 
-  if ENV['RAILS_VERSION'] == '4.2.0.beta1'
+  version = Gem::Requirement.parse(ENV['RAILS_VERSION']).last.version rescue nil
+  if version == '4.2.0.beta1'
     # see https://github.com/rails/rails-deprecated_sanitizer/pull/1
     gem 'rails-deprecated_sanitizer', :github => 'rails/rails-deprecated_sanitizer'
   end
