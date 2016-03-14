@@ -603,6 +603,15 @@ shared_examples_for 'a delayed_job backend' do
         expect(@job).to receive(:invoke_job).and_raise error_with_nil_message
         expect { worker.run(@job) }.not_to raise_error
       end
+
+      it "retries for a struct that does not exist" do
+        job = Delayed::Job.create(:handler => "--- !ruby/struct:User::Xyzzy\nid: 5\n")
+        worker.run(job)
+        job.reload
+
+        expect(job.last_error).to_not be_nil
+        expect(job.attempts).to eq(1)
+      end
     end
 
     context 'reschedule' do
